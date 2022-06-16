@@ -40,7 +40,7 @@ export async function deleteLocalFiles(files: Array<string>) {
 /**
  * Deletes all files in the tmp folder.
  */
-export async function deleteTmpFiles() {
+export async function deleteTempFiles() {
   const directoryPath = path.join(__dirname, 'tmp');
   fs.readdir(directoryPath, async function (error, files){
     if(error){

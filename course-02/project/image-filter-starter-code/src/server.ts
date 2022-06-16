@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { filterImageFromURL, isValidUrl, deleteTmpFiles } from './util/util';
+import { filterImageFromURL, isValidUrl, deleteTempFiles } from './util/util';
 
 (async () => {
 
@@ -11,7 +11,7 @@ import { filterImageFromURL, isValidUrl, deleteTmpFiles } from './util/util';
 
   app.get( "/", async ( req, res ) => {
     res.send("try GET /filteredimage?image_url={{}}")
-  } );
+  });
 
   app.get( "/filteredimage", async ( req, res ) => {
 
@@ -28,7 +28,7 @@ import { filterImageFromURL, isValidUrl, deleteTmpFiles } from './util/util';
     }
 
     res.status(200).sendFile(image_path);
-    deleteTmpFiles();
+    deleteTempFiles();
   });
   
 
@@ -36,5 +36,5 @@ import { filterImageFromURL, isValidUrl, deleteTmpFiles } from './util/util';
       console.log( `server running http://localhost:${ port }` );
       console.log( `press CTRL+C to stop server` );
   } );
-  
+
 })();

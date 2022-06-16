@@ -1,13 +1,12 @@
 import fs from "fs";
+import path from "path";
 import Jimp = require("jimp");
 
-// filterImageFromURL
-// helper function to download, filter, and save the filtered image locally
-// returns the absolute path to the local image
-// INPUTS
-//    inputURL: string - a publicly accessible url to an image file
-// RETURNS
-//    an absolute path to a filtered image locally saved file
+/**
+ * Returns an absolute path to a filtered image locally saved file.
+ * 
+ * @param inputURL {string} - a publicly accessible url to an image file
+ */
 export async function filterImageFromURL(inputURL: string): Promise<string> {
   return new Promise(async (resolve, reject) => {
     try {
@@ -27,13 +26,41 @@ export async function filterImageFromURL(inputURL: string): Promise<string> {
   });
 }
 
-// deleteLocalFiles
-// helper function to delete files on the local disk
-// useful to cleanup after tasks
-// INPUTS
-//    files: Array<string> an array of absolute paths to files
+/**
+ * Deletes files on the local disk.
+ * 
+ * @param files {Array<string>} an array of absolute paths to files.
+ */
 export async function deleteLocalFiles(files: Array<string>) {
   for (let file of files) {
     fs.unlinkSync(file);
+  }
+}
+
+/**
+ * Deletes all files in the tmp folder.
+ */
+export async function deleteTmpFiles() {
+  const directoryPath = path.join(__dirname, 'tmp');
+  fs.readdir(directoryPath, async function (error, files){
+    if(error){
+      console.log('unable to read directory');
+      return;
+    }
+    const _files = files.map((file) => __dirname + '/tmp/' + file);
+    await deleteLocalFiles(_files);
+  });
+}
+
+/**
+ * Returns true if a given url is valid, else false.
+ * 
+ * @param url {string} the url to be validated.
+ */
+export function isValidUrl(url: string) {
+  try{
+    return ['http:', 'https:'].includes((new URL(url)).protocol);
+  } catch(e){
+    return false;
   }
 }

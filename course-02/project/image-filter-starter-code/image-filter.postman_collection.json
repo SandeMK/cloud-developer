@@ -1,0 +1,39 @@
+{
+	"info": {
+		"_postman_id": "c438cac5-7562-483e-925b-bf5f21125113",
+		"name": "Image Filter",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Filter Image",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/filteredimage/?image_url=htts://www.learningcontainer.com/wp-content/uploads/2020/07/Sample-Image-file-Download.jp",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"filteredimage",
+						""
+					],
+					"query": [
+						{
+							"key": "image_url",
+							"value": "htts://www.learningcontainer.com/wp-content/uploads/2020/07/Sample-Image-file-Download.jp"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
